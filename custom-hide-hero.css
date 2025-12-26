@@ -6,21 +6,30 @@ div[style*="hero-bg-new"],
 }
 
 /* トップのヒーローセクション全体を非表示 */
-section:first-of-type {
+body > div > main > section:first-child {
     display: none !important;
 }
 
-/* 2番目のセクション（営業を夢を持てる仕事に）に背景画像を追加 */
-section:nth-of-type(2) {
+/* ヘッダーの直後の最初のsectionを非表示 */
+header + section {
+    display: none !important;
+}
+
+/* 「営業を 夢を持てる 仕事に」セクションに背景画像を追加 */
+/* このセクションは通常2番目または3番目のセクション */
+main > section:nth-child(2),
+main > section:nth-child(3) {
     position: relative !important;
     background-image: url('/images/hero-bg-new.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+    min-height: 400px !important;
 }
 
 /* 半透明のオーバーレイ */
-section:nth-of-type(2)::before {
+main > section:nth-child(2)::before,
+main > section:nth-child(3)::before {
     content: '' !important;
     position: absolute !important;
     top: 0 !important;
@@ -32,7 +41,8 @@ section:nth-of-type(2)::before {
 }
 
 /* テキストを前面に表示 */
-section:nth-of-type(2) > * {
+main > section:nth-child(2) > *,
+main > section:nth-child(3) > * {
     position: relative !important;
     z-index: 1 !important;
 }
