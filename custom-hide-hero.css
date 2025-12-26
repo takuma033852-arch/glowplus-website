@@ -9,4 +9,18 @@ div[style*="hero-bg-new"],
 section:first-of-type {
     background-image: none !important;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    min-height: 60vh !important;
+    max-height: 70vh !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* スマホでの高さ調整 */
+@media (max-width: 640px) {
+    section:first-of-type {
+        min-height: 50vh !important;
+        max-height: 60vh !important;
+    }
 }
