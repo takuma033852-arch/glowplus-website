@@ -1,0 +1,12 @@
+/* ヒーロー画像を非表示にする */
+section[style*="hero-bg-new"],
+div[style*="hero-bg-new"],
+[style*="background-image"][style*="hero-bg-new"] {
+    background-image: none !important;
+}
+
+/* ヒーローセクション全体の背景を単色に */
+section:first-of-type {
+    background-image: none !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
