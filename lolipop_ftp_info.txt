@@ -1,0 +1,9 @@
+ロリポップ FTP情報
+====================
+
+FTPサーバー: ftp-1.lolipop.jp
+FTPSサーバー: ftp-1.lolipop.jp
+FTP・WebDAVアカウント: kill.jp-glow-plus
+FTP・WebDAVパスワード: glow2025plus
+フルパス: /home/users/0/kill.jp-glow-plus/web
+サイトアドレス: http://glow-plus.kill.jp/
