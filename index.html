@@ -63,6 +63,75 @@
     			domain: window.location.host
   			}
 			})
-		</script></body>
+		</script>
+		
+		<!-- バッジ削除スクリプト -->
+		<script>
+			// ページ読み込み完了後にバッジを削除
+			window.addEventListener('load', function() {
+				setTimeout(function() {
+					// 様々なセレクタでバッジ要素を検索して削除
+					const selectors = [
+						'[class*="manus"]',
+						'[class*="badge"]',
+						'[id*="manus"]',
+						'a[href*="manus"]',
+						'div[style*="position: fixed"]',
+						'div[style*="z-index: 9999"]'
+					];
+					
+					selectors.forEach(function(selector) {
+						try {
+							const elements = document.querySelectorAll(selector);
+							elements.forEach(function(el) {
+								// テキストに"Made with Manus"や"manus"が含まれているか確認
+								const text = el.textContent || el.innerText || '';
+								if (text.toLowerCase().includes('manus') || text.toLowerCase().includes('made with')) {
+									el.remove();
+									console.log('Badge removed:', selector);
+								}
+							});
+						} catch(e) {
+							console.log('Error removing badge:', e);
+						}
+					});
+				}, 500); // 500ms待機してから実行
+				
+				// 追加で1秒後にも実行（遅延読み込み対策）
+				setTimeout(function() {
+					const allElements = document.body.getElementsByTagName('*');
+					for (let i = allElements.length - 1; i >= 0; i--) {
+						const el = allElements[i];
+						const text = el.textContent || el.innerText || '';
+						if (text.toLowerCase().includes('made with manus')) {
+							el.remove();
+							console.log('Badge removed (delayed check)');
+							break;
+						}
+					}
+				}, 1000);
+			});
+			
+			// MutationObserverで動的に追加されるバッジも監視
+			const observer = new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					mutation.addedNodes.forEach(function(node) {
+						if (node.nodeType === 1) { // Element node
+							const text = node.textContent || node.innerText || '';
+							if (text.toLowerCase().includes('manus') || text.toLowerCase().includes('made with')) {
+								node.remove();
+								console.log('Badge removed (mutation observer)');
+							}
+						}
+					});
+				});
+			});
+			
+			observer.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+		</script>
+	</body>
 
 </html>
