@@ -1,0 +1,37 @@
+/* Made with Manus バッジを完全に非表示にする */
+
+/* 右下の固定要素を非表示 */
+a[href*="manus"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* manusを含むクラスやIDを持つ要素を非表示 */
+[class*="manus"],
+[id*="manus"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* badgeを含むクラスやIDを持つ要素を非表示 */
+[class*="badge"],
+[id*="badge"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* z-indexが9999の固定要素を非表示（バッジの可能性が高い） */
+div[style*="z-index: 9999"],
+div[style*="z-index:9999"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* 右下に固定された要素を非表示 */
+div[style*="position: fixed"][style*="right"],
+div[style*="position:fixed"][style*="right"] {
+    display: none !important;
+    visibility: hidden !important;
+}
