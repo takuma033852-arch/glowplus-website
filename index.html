@@ -133,61 +133,6 @@
 				subtree: true
 			});
 		</script>
-		
-		<!-- 会社概要をフッターに移動するスクリプト -->
-		<script>
-			window.addEventListener('load', function() {
-				setTimeout(function() {
-					// 会社概要セクションを非表示
-					const companySection = document.querySelector('[id*="company"]') || 
-											 Array.from(document.querySelectorAll('div')).find(el => 
-												 el.textContent.includes('会社名') && 
-												 el.textContent.includes('代表者') && 
-												 el.textContent.includes('所在地') &&
-												 el.textContent.includes('棈松 琴乃')
-											 );
-					
-					if (companySection) {
-						// セクション全体を非表示（親要素を探す）
-						let sectionToHide = companySection;
-						while (sectionToHide && sectionToHide.tagName !== 'SECTION') {
-							sectionToHide = sectionToHide.parentElement;
-						}
-						if (sectionToHide && sectionToHide.tagName === 'SECTION') {
-							sectionToHide.style.display = 'none';
-						} else {
-							companySection.style.display = 'none';
-						}
-						console.log('Company section hidden');
-					}
-					
-					// フッターに会社情報を追加
-					const footer = document.querySelector('footer');
-					if (footer) {
-						// コピーライト要素を探す
-						const copyright = Array.from(footer.querySelectorAll('p, div')).find(el => 
-							el.textContent.includes('© 2024')
-						);
-						
-						if (copyright) {
-							// 会社情報をコピーライトの前に挿入
-							const companyInfo = document.createElement('div');
-							companyInfo.className = 'text-blue-100 text-xs sm:text-sm font-light mt-4 mb-4 space-y-1';
-							companyInfo.innerHTML = `
-								<p>合同会社glowplus</p>
-								<p>〒450-0002 愛知県名古屋市中村区名駅３丁目４－１０ アルティメイト名駅１ｓｔ２階</p>
-								<p>代表者: 棈松 琴乃</p>
-							`;
-							
-							// コピーライトの親要素に挿入
-							const parent = copyright.parentElement;
-							parent.insertBefore(companyInfo, copyright);
-							console.log('Company info added to footer');
-						}
-					}
-				}, 1000); // 1秒待機してから実行
-			});
-		</script>
 	</body>
 
 </html>
